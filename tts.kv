@@ -1,0 +1,78 @@
+Interface:
+
+<Interface>:
+    MDBanner:
+        id: banner
+        text: ["Already Running ......"]
+        over_widget: toolbar
+        vertical_padding: toolbar.height
+        right_action: ["CLOSE", lambda x: root.closing()]
+    MDToolbar:
+        id: toolbar
+        title:"Text To Speech Converter"
+        anchor_title:"center"
+        pos_hint:{"top": 1}
+        md_bg_color: app.theme_cls.primary_color
+    MDTextField:
+        id: input_text
+        hint_text:"Text Here"
+        mode:"fill"
+        pos_hint:{"center_x":.5}
+        pos: 1, "480dp"
+        multiline: True
+        size_hint:None,None
+        width: "400dp"
+        max_height:"150dp"
+    MDBoxLayout:
+        pos_hint:{"center_x":.5}
+        pos: 1, "435dp"
+        adaptive_size: True
+        MDBoxLayout:
+            adaptive_size: True
+            MDCheckbox:
+                id: female
+                group:"selection"
+                size_hint: None,None
+                size: "24dp","24dp"
+                active: True
+            MDLabel:
+                text:"Female"
+                size_hint:None,None
+                size: "100dp","24dp"
+        MDBoxLayout:
+            adaptive_size: True
+            MDCheckbox:
+                id: male
+                group:"selection"
+                size_hint: None,None
+                size: "24dp","24dp"
+                active: False
+            MDLabel:
+                text:"Male"
+                size_hint:None,None
+                size: "100dp","24dp"
+    Click_Icon:
+        id: icon_btn
+        icon:"play.png"
+        size_hint:None,None
+        size: "200dp","200dp"
+        pos_hint:{"center_x":.5}
+        pos: 1,"150dp"
+        on_press:root.changing()
+
+    MDFloatingActionButton:
+        icon:"export"
+        md_bg_color: app.theme_cls.primary_color
+        pos_hint:{"right": .95}
+        pos:1, "20dp"
+        on_press: root.exporting_menu()
+
+<Dialog_Content>:
+    orientation:"vertical"
+    size_hint_y: None
+    height: "40dp"
+    MDTextField:
+        hint_text: "Filename Here"
+        mode:"rectangle"
+        helper_text:"Do not enter the name with extension"
+        helper_text_mode: "on_focus"
